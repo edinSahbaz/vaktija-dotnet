@@ -2,13 +2,13 @@
 {
     public struct IntervalDatuma
     {
-        public DateTime pocetakRamazana { get; }
-        public DateTime krajRamazana { get; }
+        public DateTime pocetakVaktije { get; }
+        public DateTime krajVaktije { get; }
 
-        public IntervalDatuma(DateTime pocetakRamazana, DateTime krajRamazana)
+        public IntervalDatuma(DateTime pocetakVaktije, DateTime krajVaktije)
         {
-            this.pocetakRamazana = pocetakRamazana;
-            this.krajRamazana = krajRamazana;
+            this.pocetakVaktije = pocetakVaktije;
+            this.krajVaktije = krajVaktije;
         }
     }
 }

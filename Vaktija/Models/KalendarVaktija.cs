@@ -4,14 +4,14 @@ namespace Vaktija.Models
 {
 	public class KalendarVaktija
     {
-		private DateTime pocetakRamazana { get; set; }
-		private DateTime krajRamazana { get; set; }
+		private DateTime pocetakVaktije { get; set; }
+		private DateTime krajVaktije { get; set; }
 		public List<DanVaktije> daniVaktije { get; set; }
 
 		public KalendarVaktija(IntervalDatuma intervalDatuma)
 		{
-			pocetakRamazana = intervalDatuma.pocetakRamazana;
-			krajRamazana = intervalDatuma.krajRamazana;
+			pocetakVaktije = intervalDatuma.pocetakVaktije;
+			krajVaktije = intervalDatuma.krajVaktije;
 
 			daniVaktije = new List<DanVaktije>();
 		}
@@ -56,7 +56,7 @@ namespace Vaktija.Models
                         jacija = jacija.AddHours(1);
                     }
 
-                preskociPovecanje:
+                    preskociPovecanje:
                     var output = new Termini(zora, izlazakSunca, podne, ikindija, aksam, jacija);
 
                     return output;
@@ -74,9 +74,9 @@ namespace Vaktija.Models
 
         public async Task popuniVaktiju()
 		{
-			DateTime datum = pocetakRamazana;
+			DateTime datum = pocetakVaktije;
 
-            while (datum <= krajRamazana)
+            while (datum <= krajVaktije)
             {
                 var termini = await izracunajTermine(datum);
 
@@ -92,8 +92,8 @@ namespace Vaktija.Models
 			string output = "\nVaktija - GRUPA 2\n" +
 				$"------------------\n\n" +
 				$"Lokacija: Sarajevo, Bosna i Hercegovina\n" +
-				$"Početak:  {pocetakRamazana.ToString("dddd, dd.MM.yyyy.")}\n" +
-				$"Kraj:     {krajRamazana.ToString("dddd, dd.MM.yyyy.")}\n\n";
+				$"Početak:  {pocetakVaktije.ToString("dddd, dd.MM.yyyy.")}\n" +
+				$"Kraj:     {krajVaktije.ToString("dddd, dd.MM.yyyy.")}\n\n";
                                               
 			string separator = "|----------------|---------------|---------------|---------------|---------------|---------------|---------------|\n";
 			string headerTop = "|                | Početak posta |               |               |               |     Iftar     |               |\n";
