@@ -43,8 +43,11 @@ namespace Vaktija.Models
                     TimeOnly aksam = TimeOnly.Parse(podaci.vakat[4]);
                     TimeOnly jacija = TimeOnly.Parse(podaci.vakat[5]);
 
-                    if (datum.Month > 3 || (datum.Month == 3 && datum.Day >= 26))
+                    if (datum.Month >= 3 && datum.Month <= 10)
                     {
+                        if ((datum.Month == 3 && datum.Day < 26) || (datum.Month == 10 && datum.Day > 29))
+                            goto preskociPovecanje;
+
                         zora = zora.AddHours(1);
                         izlazakSunca = izlazakSunca.AddHours(1);
                         podne = podne.AddHours(1);
@@ -53,6 +56,7 @@ namespace Vaktija.Models
                         jacija = jacija.AddHours(1);
                     }
 
+                preskociPovecanje:
                     var output = new Termini(zora, izlazakSunca, podne, ikindija, aksam, jacija);
 
                     return output;
